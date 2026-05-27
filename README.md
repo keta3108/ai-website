@@ -1,6 +1,6 @@
 # NeuralFlow — AI Website
 
-A stunning dark-mode AI SaaS landing page with a **live AI chat** powered by Claude.
+A responsive AI SaaS landing page with an integrated real-time conversational assistant.
 
 ## Project Structure
 
