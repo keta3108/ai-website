@@ -3,9 +3,6 @@
    =========================== */
 
 // ---- CONFIG ----
-// Replace with your actual Anthropic API key
-const API_KEY = "YOUR_ANTHROPIC_API_KEY";
-const MODEL = "claude-sonnet-4-20250514";
 const SYSTEM_PROMPT = `You are NeuralFlow AI, a helpful, intelligent, and slightly futuristic-feeling AI assistant built into the NeuralFlow website. You are friendly, concise, and sharp. You help users with writing, analysis, coding, brainstorming, and general questions. Keep responses clear and useful. Avoid being overly verbose.`;
 
 // ---- STATE ----
@@ -94,6 +91,7 @@ async function sendMessage(text) {
   showTyping();
 
   try {
+    // If you are NOT using API, this will always fail and go to fallback
     const response = await fetch("https://api.anthropic.com/v1/messages", {
       method: "POST",
       headers: {
@@ -111,8 +109,7 @@ async function sendMessage(text) {
     });
 
     if (!response.ok) {
-      const err = await response.json();
-      throw new Error(err.error?.message || "API error");
+      throw new Error("API error");
     }
 
     const data = await response.json();
@@ -127,17 +124,34 @@ async function sendMessage(text) {
     removeTyping();
     console.error(err);
 
-    // Fallback demo response if API key not set
-    const demoReplies = [
-      "That's a great question! To fully use my AI capabilities, please add your Anthropic API key in `js/main.js`. For now, I'm running in demo mode.",
-      "I'd love to help with that! Set up your API key in the js/main.js file and I'll give you a real answer instantly.",
-      "In demo mode right now — add your Anthropic API key to unlock full AI responses. It's just one line in js/main.js!"
-    ];
-    const fallback = demoReplies[Math.floor(Math.random() * demoReplies.length)];
-    appendMessage("assistant", fallback);
-  }
+    // ---- SMART LOCAL CHATBOT (NO API NEEDED) ----
+    let fallback = "";
+    const lowerText = trimmed.toLowerCase();
 
-  setLoading(false);
+    if (lowerText.includes("season")) {
+      fallback = "Australia is currently in autumn.";
+    } 
+    else if (lowerText.includes("hello") || lowerText.includes("hi")) {
+      fallback = "Hello! I'm NeuralFlow AI. How can I help you today?";
+    }
+    else if (lowerText.includes("weather")) {
+      fallback = "I can't access live weather yet, but I can help explain climate and seasons.";
+    }
+    else if (lowerText.includes("code")) {
+      fallback = "I can help with HTML, CSS, JavaScript, React, and frontend development concepts.";
+    }
+    else if (lowerText.includes("job")) {
+      fallback = "Building portfolio projects like this is a great way to showcase your frontend skills to recruiters.";
+    }
+    else {
+      fallback = "That's an interesting question. NeuralFlow AI is currently running in smart local mode.";
+    }
+
+    appendMessage("assistant", fallback);
+
+  } finally {
+    setLoading(false);
+  }
 }
 
 // ---- QUICK PROMPTS ----
@@ -148,7 +162,6 @@ function usePrompt(text) {
   autoResize();
 }
 
-// Expose globally for inline onclick handlers
 window.usePrompt = usePrompt;
 
 // ---- CLEAR CHAT ----
@@ -159,13 +172,13 @@ clearBtn.addEventListener("click", () => {
     <div class="message ai-message">
       <div class="msg-avatar">N</div>
       <div class="msg-bubble">
-        Chat cleared! I'm ready for a fresh conversation. What would you like to explore?
+        Chat cleared! I'm ready for a fresh conversation.
       </div>
     </div>
   `;
 });
 
-// ---- AUTO RESIZE TEXTAREA ----
+// ---- AUTO RESIZE ----
 
 function autoResize() {
   userInput.style.height = "auto";
@@ -174,7 +187,7 @@ function autoResize() {
 
 userInput.addEventListener("input", autoResize);
 
-// ---- KEYBOARD ----
+// ---- EVENTS ----
 
 userInput.addEventListener("keydown", (e) => {
   if (e.key === "Enter" && !e.shiftKey) {
@@ -185,25 +198,16 @@ userInput.addEventListener("keydown", (e) => {
 
 sendBtn.addEventListener("click", () => sendMessage());
 
-// ---- MOBILE NAV ----
+// ---- MOBILE MENU ----
 
 hamburger?.addEventListener("click", () => {
   const navLinks = document.querySelector(".nav-links");
   if (navLinks) {
     navLinks.style.display = navLinks.style.display === "flex" ? "none" : "flex";
-    navLinks.style.flexDirection = "column";
-    navLinks.style.position = "fixed";
-    navLinks.style.top = "64px";
-    navLinks.style.left = "0";
-    navLinks.style.right = "0";
-    navLinks.style.background = "rgba(6,6,10,0.97)";
-    navLinks.style.padding = "1.5rem 3rem";
-    navLinks.style.borderBottom = "1px solid rgba(255,255,255,0.07)";
-    navLinks.style.zIndex = "99";
   }
 });
 
-// ---- SCROLL ANIMATIONS ----
+// ---- ANIMATIONS ----
 
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
