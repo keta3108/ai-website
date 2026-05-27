@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NeuralFlow — AI That Thinks With You</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-logo">
+      <span class="logo-dot"></span>
+      NeuralFlow
+    </div>
+    <ul class="nav-links">
+      <li><a href="#features">Features</a></li>
+      <li><a href="#demo">Demo</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+    </ul>
+    <a href="#demo" class="nav-cta">Try Free</a>
+    <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg">
+      <div class="grid-overlay"></div>
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="orb orb-3"></div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        Now with GPT-4o + Claude integration
+      </div>
+      <h1 class="hero-title">
+        Intelligence<br />
+        <span class="gradient-text">Redefined.</span>
+      </h1>
+      <p class="hero-sub">
+        NeuralFlow brings cutting-edge AI into one seamless workspace —
+        write, analyze, generate, and think smarter.
+      </p>
+      <div class="hero-actions">
+        <a href="#demo" class="btn-primary">Start for Free</a>
+        <a href="#features" class="btn-ghost">See How It Works ↓</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><strong>2M+</strong><span>Users</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><strong>99.9%</strong><span>Uptime</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><strong>150+</strong><span>Integrations</span></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="floating-card card-1">
+        <div class="card-icon">✦</div>
+        <p>Summarize 40-page report in seconds</p>
+      </div>
+      <div class="floating-card card-2">
+        <div class="card-icon">◈</div>
+        <p>Write code in any language</p>
+      </div>
+      <div class="floating-card card-3">
+        <div class="card-icon">⬡</div>
+        <p>Generate images from text</p>
+      </div>
+      <div class="hero-orb-center">
+        <div class="pulse-ring ring-1"></div>
+        <div class="pulse-ring ring-2"></div>
+        <div class="pulse-ring ring-3"></div>
+        <div class="center-core">AI</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features" id="features">
+    <div class="section-label">Capabilities</div>
+    <h2 class="section-title">Everything you need,<br /><em>nothing you don't.</em></h2>
+    <div class="features-grid">
+
+      <div class="feature-card feat-large">
+        <div class="feat-icon">🧠</div>
+        <h3>AI Chat Assistant</h3>
+        <p>Conversational AI with memory, context, and personality. Ask anything — get intelligent, nuanced answers instantly.</p>
+        <div class="feat-tag">Most Popular</div>
+      </div>
+
+      <div class="feature-card">
+        <div class="feat-icon">📝</div>
+        <h3>Smart Writing</h3>
+        <p>Drafts, rewrites, and refines your content with style and tone controls.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feat-icon">💻</div>
+        <h3>Code Generator</h3>
+        <p>Write, debug, and explain code in 50+ languages with real-time feedback.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feat-icon">🔍</div>
+        <h3>Document Analysis</h3>
+        <p>Upload PDFs, spreadsheets, or images — get instant intelligent summaries.</p>
+      </div>
+
+      <div class="feature-card feat-wide">
+        <div class="feat-icon">🎨</div>
+        <h3>Image Generation</h3>
+        <p>Transform text prompts into stunning, production-ready visuals in seconds. Powered by DALL-E and Stable Diffusion.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- LIVE AI DEMO -->
+  <section class="demo-section" id="demo">
+    <div class="section-label">Live Demo</div>
+    <h2 class="section-title">Talk to our AI <em>right now.</em></h2>
+    <p class="section-sub">Powered by Claude. No signup needed.</p>
+
+    <div class="chat-container">
+      <div class="chat-header">
+        <div class="chat-status">
+          <span class="status-dot"></span>
+          NeuralFlow AI — Online
+        </div>
+        <button class="chat-clear" id="clearChat">Clear</button>
+      </div>
+
+      <div class="chat-messages" id="chatMessages">
+        <div class="message ai-message">
+          <div class="msg-avatar">N</div>
+          <div class="msg-bubble">
+            👋 Hi! I'm NeuralFlow AI. Ask me anything — I can write, analyze, answer questions, help with code, or just chat. What's on your mind?
+          </div>
+        </div>
+      </div>
+
+      <div class="chat-input-area">
+        <div class="quick-prompts">
+          <button class="quick-btn" onclick="usePrompt('Write a product description for wireless earbuds')">✍️ Write for me</button>
+          <button class="quick-btn" onclick="usePrompt('Explain quantum computing simply')">🔬 Explain something</button>
+          <button class="quick-btn" onclick="usePrompt('Give me 5 startup ideas for 2025')">💡 Brainstorm</button>
+        </div>
+        <div class="input-row">
+          <textarea
+            id="userInput"
+            placeholder="Ask me anything..."
+            rows="1"
+          ></textarea>
+          <button class="send-btn" id="sendBtn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="22" y1="2" x2="11" y2="13"></line>
+              <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="pricing" id="pricing">
+    <div class="section-label">Pricing</div>
+    <h2 class="section-title">Simple, honest pricing.</h2>
+    <div class="pricing-grid">
+
+      <div class="price-card">
+        <div class="price-tier">Starter</div>
+        <div class="price-amount">$0<span>/mo</span></div>
+        <ul class="price-features">
+          <li>✓ 50 AI messages/day</li>
+          <li>✓ Chat assistant</li>
+          <li>✓ Basic writing tools</li>
+          <li class="disabled">✗ Image generation</li>
+          <li class="disabled">✗ Document analysis</li>
+        </ul>
+        <a href="#" class="price-btn">Get Started</a>
+      </div>
+
+      <div class="price-card price-featured">
+        <div class="price-badge">Most Popular</div>
+        <div class="price-tier">Pro</div>
+        <div class="price-amount">$19<span>/mo</span></div>
+        <ul class="price-features">
+          <li>✓ Unlimited AI messages</li>
+          <li>✓ All AI models</li>
+          <li>✓ Image generation</li>
+          <li>✓ Document analysis</li>
+          <li>✓ Priority support</li>
+        </ul>
+        <a href="#" class="price-btn price-btn-primary">Start Free Trial</a>
+      </div>
+
+      <div class="price-card">
+        <div class="price-tier">Team</div>
+        <div class="price-amount">$49<span>/mo</span></div>
+        <ul class="price-features">
+          <li>✓ Everything in Pro</li>
+          <li>✓ Up to 10 users</li>
+          <li>✓ Team workspaces</li>
+          <li>✓ Admin dashboard</li>
+          <li>✓ API access</li>
+        </ul>
+        <a href="#" class="price-btn">Contact Sales</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-logo">
+      <span class="logo-dot"></span>
+      NeuralFlow
+    </div>
+    <p class="footer-tagline">AI that thinks with you.</p>
+    <div class="footer-links">
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+      <a href="#">Contact</a>
+      <a href="#">Docs</a>
+    </div>
+    <p class="footer-copy">© 2025 NeuralFlow Inc. All rights reserved.</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
