@@ -23,10 +23,9 @@ ai-website/
 3. Run the site  
    Right-click index.html → Open with Live Server
 
-## Enable Live AI Chat
+## Features
 
-1. Get API key: https://console.anthropic.com  
-2. Open `js/main.js`  
-3. Replace:
-   ```js
-   const API_KEY = "YOUR_ANTHROPIC_API_KEY";
+- AI-inspired conversational interface
+- Responsive dark-mode design
+- Interactive user experience
+- Modern SaaS-style landing page
